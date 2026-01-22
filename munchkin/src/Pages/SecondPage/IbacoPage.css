@@ -1,0 +1,227 @@
+/* ============================= */
+/* PAGE BASE                     */
+/* ============================= */
+
+.ibaco-page {
+  min-height: 87vh;
+  background-image: url("./Images/bg.png");
+  background-size: cover;
+  background-position: center;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  padding: 50px 100px;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle sparkle texture */
+.ibaco-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* ============================= */
+/* LEFT QUOTE CARD               */
+/* ============================= */
+
+.quote-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 48px 44px;
+  max-width: 420px;
+    margin-left: 40px;
+  box-shadow:
+    0 30px 60px rgba(214, 150, 185, 0.25);
+}
+
+.tag {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #c78fb4;
+  margin-bottom: 18px;
+}
+
+.headline {
+  font-family: "Playfair Display", serif;
+  font-size: 34px;
+  line-height: 1.25;
+  color: #b36a97;
+  margin-bottom: 22px;
+}
+
+.headline span {
+  color: #9a4f7d;
+}
+
+.subtext {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #9b7c90;
+}
+
+/* ============================= */
+/* RIGHT ELLIPTICAL DIV           */
+/* ============================= */
+
+.illustration-wrap {
+  width: 420px;
+  height: 520px;
+
+  /* the div itself is elliptical */
+  border-radius: 50% / 60%;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 224, 240, 0.9),
+    rgba(245, 205, 228, 0.8)
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow:
+    0 40px 80px rgba(190, 120, 160, 0.35);
+}
+
+/* image sits on top of ellipse */
+.illustration-wrap img {
+  max-width: 300px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.45);
+  padding: 16px;
+
+  box-shadow:
+    0 25px 55px rgba(160, 90, 130, 0.4);
+}
+.right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+
+/* ============================= */
+/* BACK BUTTON                   */
+/* ============================= */
+
+.back-btn {
+  background: linear-gradient(135deg, #f5c1dc, #e6a9cb);
+  border: none;
+  padding: 12px 26px;
+  border-radius: 999px;
+
+  font-size: 13px;
+  color: #7b3e63;
+  cursor: pointer;
+
+  box-shadow: 0 12px 30px rgba(200, 120, 165, 0.35);
+  transition: all 0.25s ease;
+}
+
+
+
+
+
+.back-btn:hover {
+  transform: translateX(-5%) translateY(-2px);
+  box-shadow: 0 18px 40px rgba(200, 120, 165, 0.45);
+}
+
+.back-btn:active {
+  transform: translateX(-50%) translateY(1px);
+  box-shadow: 0 8px 20px rgba(200, 120, 165, 0.25);
+}
+/* ============================= */
+/* DIALOG OVERLAY                */
+/* ============================= */
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 230, 245, 0.55);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* ============================= */
+/* DIALOG BOX                    */
+/* ============================= */
+
+.dialog-box {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 24px;
+  padding: 36px 40px;
+  max-width: 420px;
+  text-align: center;
+
+  box-shadow:
+    0 40px 80px rgba(190, 120, 160, 0.35);
+
+  animation: fadeIn 0.4s ease;
+}
+
+.dialog-text {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #9a4f7d;
+}
+
+.dialog-text.wait {
+  font-size: 24px;
+  letter-spacing: 0.5px;
+}
+
+/* ============================= */
+/* DIALOG BUTTON                 */
+/* ============================= */
+
+.dialog-btn {
+  margin-top: 26px;
+  background: linear-gradient(135deg, #f5c1dc, #e6a9cb);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 999px;
+
+  font-size: 13px;
+  color: #7b3e63;
+  cursor: pointer;
+
+  box-shadow: 0 12px 30px rgba(200, 120, 165, 0.35);
+  transition: all 0.25s ease;
+}
+
+.dialog-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(200, 120, 165, 0.45);
+}
+
+/* ============================= */
+/* ANIMATION                     */
+/* ============================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,243 @@
+/* ======================= */
+/* PAGE BASE               */
+/* ======================= */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500&family=Quicksand:wght@400;500&display=swap");
+
+.scratch-page {
+  min-height: 100vh;
+  display: flex;
+  gap: 42px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+
+  background-image: url("./Images/gift.jpeg");
+  background-size: 1550px 780px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  justify-content: flex-start; /* stop centering */
+  padding-left: 150px;  
+  animation: ambientPulse 16s ease-in-out infinite;
+}
+
+.scratch-title {
+  position: absolute;
+  top: 112px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0;
+  pointer-events: none;
+}
+
+.scratch-title h1 {
+  font-family: "Baloo 2", cursive;
+  font-size: 2.6rem;
+  font-weight: bolder;
+  letter-spacing: 0.3px;
+}
+
+.scratch-title p {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+
+/* ======================= */
+/* SOFT PINK OVERLAY       */
+/* ======================= */
+
+.scratch-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* background: rgba(252, 206, 216, 0.65); synced to image pink */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ======================= */
+/* BLUSH SHIMMER           */
+/* ======================= */
+
+.scratch-page::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 38%,
+      rgba(255, 170, 195, 0.18) 50%,
+      transparent 62%
+    );
+  animation: blushShimmer 14s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes blushShimmer {
+  from {
+    transform: translateX(-35%) translateY(-35%);
+  }
+  to {
+    transform: translateX(35%) translateY(35%);
+  }
+}
+
+/* ======================= */
+/* BLUSH DUST FLOAT        */
+/* ======================= */
+
+.gold-dust {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,170,190,0.18) 1px, transparent 1.6px);
+  background-size: 140px 140px;
+  animation: dustFloat 42s linear infinite;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes dustFloat {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-240px); }
+}
+
+/* ======================= */
+/* FILM GRAIN + SOFT ORBS  */
+/* ======================= */
+
+.film-grain {
+  position: absolute;
+  inset: 0;
+  /* background-image:
+    radial-gradient(circle at 30% 40%, rgba(255,170,200,0.12), transparent 45%),
+    radial-gradient(circle at 70% 60%, rgba(255,190,210,0.1), transparent 50%),
+    repeating-radial-gradient(
+      circle,
+      rgba(255,255,255,0.025) 0,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 2px
+    ); */
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ======================= */
+/* VIGNETTE                */
+/* ======================= */
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(120, 40, 70, 0.45) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ======================= */
+/* AMBIENT PULSE           */
+/* ======================= */
+
+@keyframes ambientPulse {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.06) saturate(1.12);
+  }
+}
+
+/* ======================= */
+/* SCRATCH CARD BASE       */
+/* ======================= */
+
+.scratch-card {
+  position: relative;
+  width: 250px;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  z-index: 3;
+    transform: translateY(50px);
+
+}
+
+.scratch-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 28px 60px rgba(0,0,0,0.45);
+}
+.scratch-title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 32px;
+  z-index: 5;
+}
+
+.scratch-title h1 {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: #5a2a3c;
+  margin-bottom: 6px;
+}
+
+.scratch-title p {
+  font-size: 1rem;
+  color: #7a4a5c;
+  opacity: 0.85;
+  letter-spacing: 0.4px;
+}
+
+/* ======================= */
+/* NEXT BUTTON             */
+/* ======================= */
+
+.next-btn {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  border: none;
+  padding: 14px 36px;
+  border-radius: 999px;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+  z-index: 6;
+
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #e7d7ff, #cdb8f6);
+  color: #4c3a7a;
+  box-shadow: 0 14px 34px rgba(170, 150, 230, 0.45);
+
+}
+
+.next-btn:hover {
+  transform: translateX(-50%) translateY(-4px);
+  box-shadow: 0 22px 48px rgba(200, 110, 150, 0.55);
+}
+
+.next-btn:active {
+  transform: translateX(-50%) translateY(0);
+  box-shadow: 0 10px 24px rgba(200, 110, 150, 0.35);
+}

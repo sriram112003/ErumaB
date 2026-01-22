@@ -1,0 +1,406 @@
+  :root {
+    --mx: 0px;
+    --my: 0px;
+  }
+
+  /* 🌸 Page */
+  .mail-page {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top, #ff9a9e, transparent 60%),
+      linear-gradient(180deg, #7b0f0f, #b31217, #e52d27);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ✨ Particles */
+  .particles::before,
+  .particles::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(white 1px, transparent 1px),
+      radial-gradient(white 1px, transparent 1px);
+    background-size: 40px 40px, 60px 60px;
+    opacity: 0.25;
+    animation: floatParticles 30s linear infinite;
+  }
+
+  .particles::after {
+    animation-duration: 45s;
+    opacity: 0.12;
+  }
+
+  @keyframes floatParticles {
+    to { transform: translateY(-220px); }
+  }
+
+  /* 🖼️ Polaroid wall */
+  .polaroid-wall {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .polaroid-wall.paused .polaroid {
+    animation-play-state: paused;
+  }
+
+  /* 🧵 Strings */
+  .string {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.35);
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 0 6vw;
+  }
+
+  .row-1 { top: 14%; transform: rotate(-2deg); }
+  .row-2 { top: 52%; transform: rotate(2deg); }
+
+  /* 🎬 Animations */
+  @keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+
+  @keyframes fadeInSoft {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes sway {
+    0%   { transform: rotate(-2deg) translate(var(--mx), var(--my)); }
+    50%  { transform: rotate(2deg)  translate(var(--mx), var(--my)); }
+    100% { transform: rotate(-2deg) translate(var(--mx), var(--my)); }
+  }
+
+  /* 📸 Polaroids */
+  .polaroid {
+  width: 95px;
+  padding: 8px 8px 20px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  transform-origin: top center;
+
+  filter: blur(0.8px);
+  opacity: 0;
+
+  animation:
+    fadeUp 3.6s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    sway 9s ease-in-out infinite;
+}
+
+
+  /* Staggered entrance */
+ .polaroid:nth-child(1) { animation-delay: 0.8s; }
+.polaroid:nth-child(2) { animation-delay: 1.8s; }
+.polaroid:nth-child(3) { animation-delay: 2.8s; }
+.polaroid:nth-child(4) { animation-delay: 3.8s; }
+.polaroid:nth-child(5) { animation-delay: 4.8s; }
+.polaroid:nth-child(6) { animation-delay: 5.8s; }
+
+
+/* 🕰️ Row 2 starts AFTER row 1 (gentle, visible delay) */
+.row-2 .polaroid:nth-child(1) { animation-delay: 7.5s; }
+.row-2 .polaroid:nth-child(2) { animation-delay: 8.8s; }
+.row-2 .polaroid:nth-child(3) { animation-delay: 10.1s; }
+.row-2 .polaroid:nth-child(4) { animation-delay: 11.4s; }
+.row-2 .polaroid:nth-child(5) { animation-delay: 12.7s; }
+.row-2 .polaroid:nth-child(6) { animation-delay: 14s; }
+
+
+
+  .polaroid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+
+  /* 📎 Clip */
+  .polaroid::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 18px;
+    background: #b0b0b0;
+    border-radius: 3px;
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.4);
+  }
+
+  /* 💌 Center */
+  .mail-content {
+    z-index: 3;
+    text-align: center;
+  }
+
+  /* 🧊 Glass Highlight (appears AFTER polaroids) */
+  .center-highlight {
+    position: relative;
+    padding: 32px 40px;
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+
+    border: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+
+    opacity: 0;
+    animation: fadeInSoft 1.4s ease forwards;
+    animation-delay: 16s;
+
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  /* Inner reflection */
+  .center-highlight::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.25),
+      rgba(255,255,255,0.05) 40%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  /* Soft glow */
+  .center-highlight::after {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(
+      circle,
+      rgba(255,255,255,0.12),
+      transparent 65%
+    );
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* ❤️ Heart */
+  .heart-balloon {
+    animation: floatHeart 4s ease-in-out infinite;
+  }
+
+  @keyframes floatHeart {
+    50% { transform: translateY(-20px); }
+  }
+
+  .parachute-heart {
+    width: 240px;
+    transition: transform 0.4s ease;
+  }
+
+  .clickable:hover .parachute-heart {
+    transform: scale(1.08);
+  }
+
+  /* 💬 Text */
+  .mail-text {
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-top: 20px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .sub-line {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  /* 🌙 Modal */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+  }
+
+  .letter-modal {
+    background: linear-gradient(#fff7fb, #fff0f6);
+    padding: 32px;
+    border-radius: 20px;
+    max-width: 420px;
+    text-align: center;
+  }
+
+  .signature {
+    margin-top: 16px;
+    font-style: italic;
+  }
+
+  button {
+    margin-top: 16px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #e65b8f;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* 📱 Mobile */
+  @media (max-width: 600px) {
+    .center-highlight {
+      padding: 24px 22px;
+      border-radius: 24px;
+    }
+
+    .parachute-heart {
+      width: 200px;
+    }
+  }
+  /* 🎁 Gift Gate */
+  /* 🎁 Gift Box – override float */
+.gift-box {
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  animation: none; /* ❌ stop floating */
+  perspective: 800px;
+}
+
+/* 🎀 Ribbons */
+.ribbon {
+  position: absolute;
+  width: 18px;
+  height: 90px;
+  background: linear-gradient(#ffb3c6, #ff6f91);
+  top: 20px;
+  border-radius: 10px;
+  transition: transform 2.2s ease, opacity 2.2s ease;
+}
+
+.ribbon-left {
+  left: 50%;
+  transform: translateX(-28px) rotate(0deg);
+}
+
+.ribbon-right {
+  left: 50%;
+  transform: translateX(10px) rotate(0deg);
+}
+
+/* 🎬 Ribbon open */
+.gift-box.ribbons-open .ribbon-left {
+  transform: translate(-90px, 80px) rotate(-45deg);
+  opacity: 0;
+}
+
+.gift-box.ribbons-open .ribbon-right {
+  transform: translate(70px, 80px) rotate(45deg);
+  opacity: 0;
+}
+
+
+/* 🎀 Lid */
+.gift-icon {
+  font-size: 10rem;
+  display: block;
+  transform-origin: bottom center;
+transition:
+    transform 2.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 2.2s ease;}
+
+/* 📦 Base (duplicate emoji in JSX) */
+.gift-base {
+  font-size: 4rem;
+  margin-top: -12px;
+  display: block;
+}
+
+/* ✨ Inner glow */
+.gift-glow {
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 65%);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 2.6s ease, transform 3s ease;
+  pointer-events: none;
+}
+
+/* 🎬 UNWRAP STATE */
+.gift-box.unwrap .gift-icon {
+  transform: rotateX(75deg) translateY(-50px);
+  opacity: 0;
+}
+
+.gift-box.unwrap .gift-glow {
+  opacity: 1;
+  transform: scale(1.2);
+}
+.gift-text {
+  margin-top: 14px;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.35),
+    0 0 12px rgba(255, 255, 255, 0.15);
+
+  opacity: 0.85;
+
+  animation: giftTextBreath 3.8s ease-in-out infinite;
+}
+
+
+/* 🌬️ Subtle breathing glow */
+@keyframes giftTextBreath {
+  0% {
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+  }
+  50% {
+    opacity: 1;
+    letter-spacing: 0.14em;
+  }
+  100% {
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+  }
+}

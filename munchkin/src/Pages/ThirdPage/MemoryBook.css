@@ -1,0 +1,282 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap");
+
+body {
+  margin: 0;
+  background: #f3eee6;
+}
+
+.memory-book {
+  position: relative;
+  padding: 90px 20px;
+  font-family: "Inter", sans-serif;
+  color: #2e2e2e;
+
+  background:
+    radial-gradient(circle at 20% 10%, rgba(224,195,140,0.25), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(201,168,106,0.18), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(200,170,120,0.22), transparent 50%),
+    linear-gradient(
+      180deg,
+      #faf7f2 0%,
+      #f1eadf 40%,
+      #efe6d8 100%
+    );
+
+  overflow: hidden;
+}
+
+.memory-book::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* Header */
+
+.header {
+  text-align: center;
+  margin-bottom: 130px;
+}
+
+.header h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 56px;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.header p {
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+/* Timeline */
+
+.timeline {
+  max-width: 920px;
+  margin: auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1.4px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(200,170,120,0) 0%,
+    rgba(200,170,120,0.55) 18%,
+    rgba(200,170,120,0.6) 50%,
+    rgba(200,170,120,0.55) 82%,
+    rgba(200,170,120,0) 100%
+  );
+
+  transform: translateX(-50%);
+}
+
+/* Timeline Items */
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  margin-bottom: 140px;
+}
+
+.timeline-item.left {
+  justify-content: flex-end;
+  padding-right: 70px;
+}
+
+.timeline-item.right {
+  justify-content: flex-start;
+  padding-left: 70px;
+}
+
+/* Dots */
+
+.dot {
+  position: absolute;
+  left: 50%;
+  top: 32px;
+  width: 10px;
+  height: 10px;
+  background: #c9a86a;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: rgba(201,168,106,0.15);
+}
+
+.final-dot {
+  background: #e0c38c;
+  box-shadow: 0 0 16px rgba(224,195,140,0.7);
+}
+
+/* Cards */
+
+.card {
+  width: 340px;
+  padding: 30px 32px;
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.92),
+    rgba(255,255,255,0.86)
+  );
+  box-shadow:
+    0 18px 45px rgba(0,0,0,0.06),
+    0 1px 0 rgba(255,255,255,0.7) inset;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 55px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.card span {
+  font-size: 13px;
+  opacity: 0.65;
+  letter-spacing: 0.02em;
+}
+
+/* Story */
+
+.story-wrapper {
+  margin-top: 18px;
+}
+
+.story-wrapper p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #3a3a3a;
+}
+
+/* Images */
+
+.memory-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  filter: saturate(0.9) contrast(0.95);
+}
+
+.final-image {
+  height: 210px;
+  border-radius: 18px;
+  box-shadow:
+    0 30px 60px rgba(224,195,140,0.35),
+    0 0 0 1px rgba(224,195,140,0.2);
+}
+
+/* Footer */
+
+.footer {
+  margin-top: 190px;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  opacity: 0.6;
+}
+
+/* Final Mode */
+
+.final-mode {
+  background:
+    radial-gradient(circle at center, rgba(255,240,200,0.45), transparent 55%),
+    linear-gradient(
+      180deg,
+      #faf7f2 0%,
+      #efe6d8 50%,
+      #e8dcc8 100%
+    );
+}
+.final-mode .timeline::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(224,195,140,0) 0%,
+    rgba(224,195,140,0.6) 20%,
+    rgba(224,195,140,0.6) 80%,
+    rgba(224,195,140,0) 100%
+  );
+}
+:root {
+  --rose: rgba(215,160,170,0.35);
+  --sage: rgba(170,195,180,0.35);
+  --lavender: rgba(190,175,215,0.35);
+  --peach: rgba(240,190,160,0.35);
+  --sand: rgba(220,200,160,0.35);
+  --amber: rgba(225,180,120,0.4);
+  --gold: rgba(235,200,130,0.45);
+  --olive: rgba(170,185,140,0.35);
+  --rust: rgba(205,150,120,0.35);
+  --mocha: rgba(175,150,130,0.35);
+  --winter: rgba(200,210,225,0.35);
+  --smoke: rgba(190,190,190,0.3);
+  --golden: rgba(235,205,140,0.6);
+}
+.tone-rose    { --tone: var(--rose); }
+.tone-sage    { --tone: var(--sage); }
+.tone-lavender{ --tone: var(--lavender); }
+.tone-peach   { --tone: var(--peach); }
+.tone-sand    { --tone: var(--sand); }
+.tone-amber   { --tone: var(--amber); }
+.tone-gold    { --tone: var(--gold); }
+.tone-olive   { --tone: var(--olive); }
+.tone-rust    { --tone: var(--rust); }
+.tone-mocha   { --tone: var(--mocha); }
+.tone-winter  { --tone: var(--winter); }
+.tone-smoke   { --tone: var(--smoke); }
+.tone-golden  { --tone: var(--golden); }
+.card.tone-rose,
+.card[class*="tone-"] {
+  position: relative;
+}
+
+.card[class*="tone-"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--tone);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card:hover::after,
+.card:has(.story-wrapper)::after {
+  opacity: 1;
+}
+.timeline-item[class*="tone-"] .dot {
+  background: color-mix(in srgb, #c9a86a 55%, var(--tone));
+}
+.timeline-item[class*="tone-"] .memory-image {
+  box-shadow: 0 18px 40px var(--tone);
+}

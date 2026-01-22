@@ -1,0 +1,501 @@
+/* ======================= */
+/* PAGE BASE               */
+/* ======================= */
+
+.coupon-page {
+  min-height: 100vh;
+  background-image: url("./Images/PinkyPromise.png");
+
+  /* width height */
+  background-size: 1600px 850px;
+
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  font-family: "Georgia", serif;
+}
+
+
+/* soft pink veil to sync UI with illustration */
+.coupon-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(252, 206, 216, 0.65);
+  z-index: 0;
+
+  /* 🔑 ADD THIS */
+  pointer-events: none;
+}
+
+
+
+
+.promise-motif {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 30% 35%, rgba(255,170,200,0.25), transparent 45%),
+    radial-gradient(circle at 70% 65%, rgba(255,200,210,0.22), transparent 50%);
+}
+
+/* ======================= */
+/* HAND-DRAWN PROMISE LINE */
+/* ======================= */
+
+.promise-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='600' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80 320 C180 220 420 220 520 320' stroke='rgba(180,90,130,0.18)' stroke-width='3' fill='none'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 600px 600px;
+  opacity: 0.35;
+}
+
+/* ======================= */
+/* FLOATING HEART GLOWS    */
+/* ======================= */
+
+.promise-hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.promise-hearts span {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background:
+    radial-gradient(circle, rgba(255,140,180,0.35), transparent 70%);
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: 0.35;
+  animation: heartFloat 40s ease-in-out infinite alternate;
+}
+
+.promise-hearts span:nth-child(1) {
+  top: 18%;
+  left: 12%;
+}
+
+.promise-hearts span:nth-child(2) {
+  bottom: 22%;
+  right: 15%;
+  animation-duration: 48s;
+}
+
+@keyframes heartFloat {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-90px); }
+}
+
+/* ======================= */
+/* LAYOUT                  */
+/* ======================= */
+
+.coupon-layout {
+  width: 90%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ======================= */
+/* LEFT TEXT               */
+/* ======================= */
+
+.coupon-left {
+  color: #4a0028;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.coupon-left h1 {
+  font-size: 3rem;
+  margin-bottom: 18px;
+}
+
+.coupon-left p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 420px;
+}
+/* ======================= */
+/* GLASS PANEL (LEFT SIDE) */
+/* ======================= */
+
+.glass-panel {
+  padding: 42px 48px;
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle inner glow */
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.35),
+      transparent 60%
+    );
+  pointer-events: none;
+}
+
+
+/* ======================= */
+/* PROMISE CARD AREA       */
+/* ======================= */
+
+.promise-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promise-stack {
+  position: relative;
+  width: 340px;
+  height: 260px;
+}
+
+.promise-stack::after {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background:
+    radial-gradient(circle, rgba(255,180,200,0.35), transparent 70%);
+  filter: blur(28px);
+  z-index: -1;
+}
+
+/* ======================= */
+/* PROMISE CARD            */
+/* ======================= */
+
+.promise-card {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 248, 242, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow:
+    0 25px 50px rgba(0,0,0,0.25),
+    inset 0 0 0 1px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* paper texture */
+.promise-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.015),
+      rgba(0,0,0,0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  border-radius: 18px;
+}
+
+/* ======================= */
+/* CARD TEXT               */
+/* ======================= */
+
+.promise-card p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  text-align: center;
+  color: #4a0028;
+  font-style: italic;
+  white-space: pre-line;
+}
+
+.hint {
+  margin-top: 18px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.promise-card:hover .hint {
+  opacity: 1;
+}
+/* ======================= */
+/* PROMISE DIALOG          */
+/* ======================= */
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.dialog-box {
+  background: rgba(255, 248, 242, 0.95);
+  padding: 36px 44px;
+  border-radius: 20px;
+  text-align: center;
+
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(0,0,0,0.05);
+
+  animation: dialogFadeIn 0.6s ease forwards;
+}
+
+.dialog-box p {
+  font-size: 1.2rem;
+  color: #4a0028;
+  margin-bottom: 24px;
+}
+
+.dialog-box button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #8b004a;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.dialog-overlay {
+  pointer-events: auto;
+}
+
+.dialog-box {
+  pointer-events: auto;
+}
+
+
+@keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* ======================= */
+/* LOCK PAGE WHEN DIALOG   */
+/* ======================= */
+
+.dialog-open .coupon-layout {
+  pointer-events: none;
+  filter: blur(2px);
+  transition: filter 0.4s ease;
+}
+
+.dialog-open .promise-hearts,
+.dialog-open .promise-motif,
+.dialog-open .promise-lines {
+  pointer-events: none;
+}
+.promise-card.final {
+  cursor: default;
+}
+
+.promise-card.final {
+  pointer-events: none;
+}
+
+.promise-card.final .restart-btn {
+  pointer-events: auto;
+}
+.restart-btn {
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 230, 238, 0.85);
+  border: 1px solid rgba(139, 0, 74, 0.25);
+  border-radius: 999px;
+  padding: 14px 28px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+/* MAIN TEXT */
+/* MAIN TEXT */
+.restart-btn .btn-main {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #6a0036;
+  text-transform: uppercase;
+}
+
+/* SUB TEXT */
+.restart-btn .btn-sub {
+  font-size: 0.7rem;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  color: rgba(90, 0, 45, 0.75);
+}
+
+
+/* HOVER */
+.restart-btn:hover {
+  background: rgba(255, 210, 225, 0.95);
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+/* ACTIVE */
+.restart-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.restart-btn,
+.restart-btn * {
+  text-decoration: none;
+}
+.restart-btn:hover .btn-main {
+  letter-spacing: 0.1em;
+}
+
+.restart-btn:active .btn-main {
+  transform: scale(0.96);
+}
+
+
+.dialog-text {
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: #4a0028;
+}
+/* ======================= */
+/* LOADING OVERLAY         */
+/* ======================= */
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(252, 206, 216, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.loading-box {
+  text-align: center;
+  color: #4a0028;
+  animation: floatIn 0.8s ease forwards;
+}
+
+.loading-box p {
+  margin-top: 22px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* ======================= */
+/* LOADING DOTS            */
+/* ======================= */
+
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  background: #8b004a;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: pulse 1.4s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ======================= */
+/* ANIMATIONS              */
+/* ======================= */
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
