@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap");
 
+/* ===================== */
+/* BASE                  */
+/* ===================== */
+
 body {
   margin: 0;
   background: #f3eee6;
@@ -10,37 +14,38 @@ body {
   padding: 90px 20px;
   font-family: "Inter", sans-serif;
   color: #2e2e2e;
+  background-image: url("./Images/bg.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+image-rendering: crisp-edges;
 
-  background:
-    radial-gradient(circle at 20% 10%, rgba(224,195,140,0.25), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(201,168,106,0.18), transparent 45%),
-    radial-gradient(circle at 50% 90%, rgba(200,170,120,0.22), transparent 50%),
-    linear-gradient(
-      180deg,
-      #faf7f2 0%,
-      #f1eadf 40%,
-      #efe6d8 100%
-    );
 
   overflow: hidden;
 }
+.memory-book,
+.memory-book * {
+  backdrop-filter: none !important;
+}
 
-.memory-book::before {
+/* Paper texture */
+/* .memory-book::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
-  opacity: 0.12;
   pointer-events: none;
   z-index: 0;
-}
+} */
 
-
-/* Header */
+/* ===================== */
+/* HEADER                */
+/* ===================== */
 
 .header {
   text-align: center;
   margin-bottom: 130px;
+  position: relative;
+  z-index: 2;
 }
 
 .header h1 {
@@ -57,40 +62,69 @@ body {
   opacity: 0.65;
 }
 
-/* Timeline */
+/* ===================== */
+/* TIMELINE              */
+/* ===================== */
 
 .timeline {
   max-width: 920px;
   margin: auto;
   position: relative;
+  z-index: 1;
 }
 
+/* Main line */
 .timeline::before {
   content: "";
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 1.4px;
+  width: 2.2px;
 
   background: linear-gradient(
     to bottom,
     rgba(200,170,120,0) 0%,
-    rgba(200,170,120,0.55) 18%,
-    rgba(200,170,120,0.6) 50%,
-    rgba(200,170,120,0.55) 82%,
+    rgba(200,170,120,0.75) 18%,
+    rgba(200,170,120,0.9) 50%,
+    rgba(200,170,120,0.75) 82%,
     rgba(200,170,120,0) 100%
   );
 
   transform: translateX(-50%);
+  z-index: 2;
 }
 
-/* Timeline Items */
+/* Soft glow behind line */
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(200,170,120,0) 0%,
+    rgba(200,170,120,0.25) 50%,
+    rgba(200,170,120,0) 100%
+  );
+
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===================== */
+/* TIMELINE ITEMS        */
+/* ===================== */
 
 .timeline-item {
   position: relative;
   display: flex;
   margin-bottom: 140px;
+  z-index: 3; /* container above line */
 }
 
 .timeline-item.left {
@@ -103,7 +137,9 @@ body {
   padding-left: 70px;
 }
 
-/* Dots */
+/* ===================== */
+/* DOTS                  */
+/* ===================== */
 
 .dot {
   position: absolute;
@@ -114,6 +150,7 @@ body {
   background: #c9a86a;
   border-radius: 50%;
   transform: translateX(-50%);
+  z-index: 5; /* topmost */
 }
 
 .dot::after {
@@ -129,7 +166,9 @@ body {
   box-shadow: 0 0 16px rgba(224,195,140,0.7);
 }
 
-/* Cards */
+/* ===================== */
+/* CARDS (ABOVE LINE)    */
+/* ===================== */
 
 .card {
   width: 340px;
@@ -140,11 +179,16 @@ body {
     rgba(255,255,255,0.92),
     rgba(255,255,255,0.86)
   );
+
   box-shadow:
     0 18px 45px rgba(0,0,0,0.06),
     0 1px 0 rgba(255,255,255,0.7) inset;
+
   cursor: pointer;
   transition: all 0.4s ease;
+
+  position: relative;
+  z-index: 4; /* 👈 card ABOVE timeline line */
 }
 
 .card:hover {
@@ -164,7 +208,9 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* Story */
+/* ===================== */
+/* STORY                 */
+/* ===================== */
 
 .story-wrapper {
   margin-top: 18px;
@@ -174,9 +220,12 @@ body {
   font-size: 15px;
   line-height: 1.9;
   color: #3a3a3a;
+  white-space: pre-line;
 }
 
-/* Images */
+/* ===================== */
+/* IMAGES                */
+/* ===================== */
 
 .memory-image {
   width: 100%;
@@ -195,7 +244,9 @@ body {
     0 0 0 1px rgba(224,195,140,0.2);
 }
 
-/* Footer */
+/* ===================== */
+/* FOOTER                */
+/* ===================== */
 
 .footer {
   margin-top: 190px;
@@ -203,9 +254,13 @@ body {
   font-size: 14px;
   letter-spacing: 0.03em;
   opacity: 0.6;
+  position: relative;
+  z-index: 2;
 }
 
-/* Final Mode */
+/* ===================== */
+/* FINAL MODE             */
+/* ===================== */
 
 .final-mode {
   background:
@@ -217,6 +272,7 @@ body {
       #e8dcc8 100%
     );
 }
+
 .final-mode .timeline::before {
   background: linear-gradient(
     to bottom,
@@ -226,6 +282,11 @@ body {
     rgba(224,195,140,0) 100%
   );
 }
+
+/* ===================== */
+/* TONE SYSTEM            */
+/* ===================== */
+
 :root {
   --rose: rgba(215,160,170,0.35);
   --sage: rgba(170,195,180,0.35);
@@ -241,6 +302,7 @@ body {
   --smoke: rgba(190,190,190,0.3);
   --golden: rgba(235,205,140,0.6);
 }
+
 .tone-rose    { --tone: var(--rose); }
 .tone-sage    { --tone: var(--sage); }
 .tone-lavender{ --tone: var(--lavender); }
@@ -254,11 +316,8 @@ body {
 .tone-winter  { --tone: var(--winter); }
 .tone-smoke   { --tone: var(--smoke); }
 .tone-golden  { --tone: var(--golden); }
-.card.tone-rose,
-.card[class*="tone-"] {
-  position: relative;
-}
 
+/* Card tint overlay */
 .card[class*="tone-"]::after {
   content: "";
   position: absolute;
@@ -274,9 +333,21 @@ body {
 .card:has(.story-wrapper)::after {
   opacity: 1;
 }
+
+/* Dot + image tone sync */
 .timeline-item[class*="tone-"] .dot {
   background: color-mix(in srgb, #c9a86a 55%, var(--tone));
 }
+
 .timeline-item[class*="tone-"] .memory-image {
   box-shadow: 0 18px 40px var(--tone);
+}
+
+/* Month-specific image sizing */
+.timeline-item.tone-peach .memory-image,
+.timeline-item.tone-sand .memory-image,
+.timeline-item.tone-rust .memory-image,
+.timeline-item.tone-winter .memory-image {
+  height: 240px;
+  object-fit: contain;
 }

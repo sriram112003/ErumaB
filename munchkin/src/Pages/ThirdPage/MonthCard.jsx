@@ -1,31 +1,40 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useRef, useLayoutEffect } from "react";
 
-const MonthCard = ({ data, side, locked, onUnlock }) => {
-  const [open, setOpen] = useState(false);
+const MonthCard = ({ data, side, isOpen, onClick }) => {
+  const dotRef = useRef(null);
+  const wasOpenRef = useRef(false);
 
-  const handleClick = () => {
-    if (locked) return;
-    setOpen(!open);
-    if (!open) onUnlock();
-  };
+  useLayoutEffect(() => {
+    // Scroll ONLY when opening for the first time
+    if (isOpen && !wasOpenRef.current) {
+      dotRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+    wasOpenRef.current = isOpen;
+  }, [isOpen]);
 
   return (
     <motion.div
-      className={`timeline-item ${side} tone-${data.tone} ${locked ? "locked" : ""}`}
+      className={`timeline-item ${side} tone-${data.tone}`}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <div className={`dot ${data.final && open ? "final-dot" : ""}`} />
+      {/* 🔑 FIXED ANCHOR */}
+      <div
+        ref={dotRef}
+        className={`dot ${data.final && isOpen ? "final-dot" : ""}`}
+      />
 
       <motion.div
         className={`card tone-${data.tone}`}
-        onClick={handleClick}
-        whileHover={!locked ? { y: -4 } : {}}
+        onClick={onClick}
         animate={{
-          scale: open && data.final ? 1.06 : open ? 1.02 : 1
+          scale: isOpen && data.final ? 1.06 : isOpen ? 1.02 : 1
         }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
@@ -33,9 +42,9 @@ const MonthCard = ({ data, side, locked, onUnlock }) => {
         <span>{data.teaser}</span>
 
         <AnimatePresence>
-          {open && (
+          {isOpen && (
             <motion.div
-              className="story open"
+              className="story-wrapper"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
@@ -48,10 +57,9 @@ const MonthCard = ({ data, side, locked, onUnlock }) => {
             </motion.div>
           )}
         </AnimatePresence>
-
-        {locked && <div className="lock-overlay">Locked</div>}
       </motion.div>
     </motion.div>
   );
 };
+
 export default MonthCard;
