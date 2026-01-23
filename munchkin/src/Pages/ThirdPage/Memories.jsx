@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./MemoryBook.css";
+
 import laptopImage from "./Images/Laptop.jpeg";
 import WA from "./Images/WA.jpg";
 import April from "./Images/April.jpeg";
@@ -160,13 +161,15 @@ December didn’t fix everything. It didn’t need to. It simply reminded me of 
 
 const MemoryBook = () => {
   const [unlockedIndex, setUnlockedIndex] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [openIndexes, setOpenIndexes] = useState([]);
   const itemRefs = useRef([]);
 
   const handleOpen = (index) => {
     if (index > unlockedIndex) return;
 
-    setActiveIndex(index);
+    setOpenIndexes((prev) =>
+      prev.includes(index) ? prev : [...prev, index]
+    );
 
     const el = itemRefs.current[index];
     if (el) {
@@ -178,7 +181,7 @@ const MemoryBook = () => {
 
       window.scrollTo({
         top: y,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
 
@@ -188,10 +191,14 @@ const MemoryBook = () => {
   };
 
   return (
-    <div className={`memory-book ${unlockedIndex === memories.length - 1 ? "final-mode" : ""}`}>
+    <div
+      className={`memory-book ${
+        unlockedIndex === memories.length - 1 ? "final-mode" : ""
+      }`}
+    >
       <header className="header">
-        <h1>Our First Year</h1>
-        <p>Not measured in days. Measured in moments.</p>
+        <h1>Where We Stayed</h1>
+        <p>A year of choosing each other, again and again, in moments both loud and unspoken.</p>
       </header>
 
       <div className="timeline">
@@ -203,7 +210,7 @@ const MemoryBook = () => {
             <MonthCard
               data={item}
               side={index % 2 === 0 ? "left" : "right"}
-              isOpen={activeIndex === index}
+              isOpen={openIndexes.includes(index)}
               onClick={() => handleOpen(index)}
             />
           </div>
@@ -222,7 +229,7 @@ const MonthCard = ({ data, side, isOpen, onClick }) => {
     <motion.div
       className={`timeline-item ${side} tone-${data.tone}`}
       initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}   
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <div className={`dot ${data.final && isOpen ? "final-dot" : ""}`} />
@@ -231,7 +238,7 @@ const MonthCard = ({ data, side, isOpen, onClick }) => {
         className={`card tone-${data.tone}`}
         onClick={onClick}
         animate={{
-          scale: isOpen && data.final ? 1.06 : isOpen ? 1.02 : 1
+          scale: isOpen && data.final ? 1.06 : isOpen ? 1.02 : 1,
         }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
@@ -247,14 +254,16 @@ const MonthCard = ({ data, side, isOpen, onClick }) => {
               exit={{ opacity: 0 }}
               transition={{
                 duration: 0.8,
-                delay: data.final ? 0.4 : 0.15
+                delay: data.final ? 0.4 : 0.15,
               }}
             >
               {data.image && (
                 <motion.img
                   src={data.image}
                   alt={data.month}
-                  className={`memory-image ${data.final ? "final-image" : ""}`}
+                  className={`memory-image ${
+                    data.final ? "final-image" : ""
+                  }`}
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
