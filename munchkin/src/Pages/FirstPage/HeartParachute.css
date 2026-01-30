@@ -404,3 +404,28 @@ transition:
     letter-spacing: 0.1em;
   }
 }
+/* 🖱️ Clickable heart — pointer behavior */
+
+.heart-balloon,
+.heart-balloon *,
+.clickable,
+.clickable * {
+  cursor: pointer;
+}
+
+.balloon-hint {
+  margin-top: 12px;
+  color: #fff;
+  font-size: 1rem;
+  opacity: 0.92;
+  letter-spacing: 0.06em;
+  font-style: italic;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.35);
+
+  animation: hintFloat 3.2s ease-in-out infinite;
+}
+
+@keyframes hintFloat {
+  0%,100% { opacity: 0.7; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(6px); }
+}

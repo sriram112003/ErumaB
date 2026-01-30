@@ -263,3 +263,28 @@ body {
   font-size: 14px;
   opacity: 0.6;
 }
+
+.photo-dump-btn {
+  margin-top: 28px;
+  padding: 12px 28px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  background: transparent;
+  color: #2e2e2e;
+
+  border: 1px solid rgba(46,46,46,0.3);
+  border-radius: 30px;
+
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.photo-dump-btn:hover {
+  background: rgba(46,46,46,0.06);
+  border-color: rgba(46,46,46,0.6);
+  transform: translateY(-2px);
+}

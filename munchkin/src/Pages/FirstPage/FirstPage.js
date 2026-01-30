@@ -97,11 +97,8 @@ const navigate = useNavigate();
                 className="heart-balloon clickable"
                 onClick={() => setOpenLetter(true)}
               >
-                <img
-                  src={parachuteHeart}
-                  alt="Parachute heart"
-                  className="parachute-heart"
-                />
+                <img src={parachuteHeart} alt="" className="parachute-heart" />
+                <div className="balloon-hint">This heart is carrying a secret…</div>
               </div>
 
               <h1 className="mail-text">
@@ -133,7 +130,7 @@ const navigate = useNavigate();
             <button
   onClick={() => {
     setOpenLetter(false);
-    navigate("/letter");
+    navigate("/scratch");
   }}
 >
   Let's Go

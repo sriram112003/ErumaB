@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./MemoryBook.css";
-
+import { useNavigate } from "react-router-dom";
 import laptopImage from "./Images/Laptop.jpeg";
 import WA from "./Images/WA.jpg";
 import April from "./Images/April.jpeg";
@@ -13,6 +13,7 @@ import September from "./Images/Sept.jpg";
 import October from "./Images/October.jpeg";
 import November from "./Images/Nov.jpeg";
 import December from "./Images/Dec.jpeg";
+
 
 const memories = [
   {
@@ -164,6 +165,8 @@ const MemoryBook = () => {
   const [openIndexes, setOpenIndexes] = useState([]);
   const itemRefs = useRef([]);
 
+  const navigate = useNavigate();
+
   const handleOpen = (index) => {
     if (index > unlockedIndex) return;
 
@@ -218,8 +221,16 @@ const MemoryBook = () => {
       </div>
 
       <footer className="footer">
-        <p>This wasn’t a year. It was a beginning that learned how to stay.</p>
-      </footer>
+  <p>This wasn’t a year. It was a beginning that learned how to stay.</p>
+
+  <button
+    className="photo-dump-btn"
+    onClick={() => navigate("/scrapbook")}
+  >
+    Ready for Photo Dump ?
+  </button>
+</footer>
+
     </div>
   );
 };
