@@ -37,45 +37,36 @@ export default function LetterGlassPage() {
 
   /* 🎵 Cinematic Audio */
  useEffect(() => {
-
   const audio = audioRef.current;
+  if (!audio) return;
 
-  if (!audio) return; // ✅ critical guard
-
-  let unlock;
+  let unlockHandler;
 
   const tryPlay = async () => {
     try {
-
       audio.playbackRate = 0.92;
       await audio.play();
-
     } catch {
-
-      unlock = () => {
-
-        // check AGAIN (component might have unmounted)
-        if (!audioRef.current) return;
-
-        audioRef.current.play().catch(() => {});
-        window.removeEventListener("click", unlock);
+      unlockHandler = () => {
+        audio.play().catch(() => {});
+        window.removeEventListener("pointerdown", unlockHandler);
       };
 
-      window.addEventListener("click", unlock);
+      window.addEventListener("pointerdown", unlockHandler);
     }
   };
 
   tryPlay();
 
   return () => {
-    audio?.pause();
-    window.removeEventListener("click", unlock);
+    audio.pause();
+    audio.currentTime = 0;
+
+    if (unlockHandler) {
+      window.removeEventListener("pointerdown", unlockHandler);
+    }
   };
-
 }, []);
-
-
-
 
   /* 🌙 CTA Click → Fade → Navigate */
   const handleClosure = () => {

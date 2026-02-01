@@ -145,20 +145,33 @@ export default function Scrapbook() {
 
   /* 🎵 Autoplay with graceful fallback */
   useEffect(() => {
-    const tryPlay = async () => {
-      try {
-        await audioRef.current.play();
-      } catch {
-        const unlock = () => {
-          audioRef.current.play();
-          window.removeEventListener("click", unlock);
-        };
-        window.addEventListener("click", unlock);
-      }
-    };
+  const audio = audioRef.current;
+  if (!audio) return;
 
-    tryPlay();
-  }, []);
+  let unlockHandler;
+
+  const tryPlay = async () => {
+    try {
+      await audio.play();
+    } catch {
+      unlockHandler = () => {
+        audio.play().catch(() => {});
+        window.removeEventListener("pointerdown", unlockHandler);
+      };
+
+      window.addEventListener("pointerdown", unlockHandler);
+    }
+  };
+
+  tryPlay();
+
+  return () => {
+    if (unlockHandler) {
+      window.removeEventListener("pointerdown", unlockHandler);
+    }
+  };
+}, []);
+
 
   return (
     <div className="wrapper">

@@ -147,7 +147,7 @@ December didn’t fix everything. It didn’t need to. It simply reminded me of 
     month: "January 2026",
     teaser: "Proof that we lasted.",
     story: "Not perfect. But real.",
-    image: "/images/jan-2026.jpg",
+    image: December,
     tone: "smoke"
   },
   {
@@ -155,7 +155,7 @@ December didn’t fix everything. It didn’t need to. It simply reminded me of 
     teaser: "Where the beginning learned how to stay.",
     story:
       "A year later, we’re still here. Not because it was easy — but because it was worth choosing.",
-    image: "/images/feb-2026.jpg",
+    image: December,
     tone: "golden",
     final: true
   }
@@ -171,25 +171,37 @@ const MemoryBook = () => {
 
   /* 🎵 AUDIO AUTO START */
   useEffect(() => {
-    const tryPlay = async () => {
-      try {
-        audioRef.current.playbackRate = 0.9; // adjust tempo here
-        await audioRef.current.play();
-      } catch {
-        const unlock = () => {
-          audioRef.current.play();
-          window.removeEventListener("click", unlock);
-        };
-        window.addEventListener("click", unlock);
-      }
-    };
+  const audio = audioRef.current;
+  if (!audio) return;
 
-    tryPlay();
+  let unlock;
 
-    return () => {
-      audioRef.current?.pause();
-    };
-  }, []);
+  const tryPlay = async () => {
+    try {
+      audio.playbackRate = 0.9;
+      await audio.play();
+    } catch {
+      unlock = () => {
+        audio.play().catch(() => {});
+        window.removeEventListener("click", unlock);
+      };
+
+      window.addEventListener("click", unlock);
+    }
+  };
+
+  tryPlay();
+
+  return () => {
+    audio.pause();
+    audio.currentTime = 0;
+
+    if (unlock) {
+      window.removeEventListener("click", unlock);
+    }
+  };
+}, []);
+
 
   const handleOpen = (index) => {
     if (index > unlockedIndex) return;

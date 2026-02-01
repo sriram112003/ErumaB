@@ -62,26 +62,39 @@ export default function BouquetPage() {
   /* =========================
      🎵 AUDIO AUTO START
   ========================= */
-  useEffect(() => {
-    const tryPlay = async () => {
-      try {
-        audioRef.current.playbackRate = 0.9; // adjust mood speed
-        await audioRef.current.play();
-      } catch {
-        const unlock = () => {
-          audioRef.current.play();
-          window.removeEventListener("click", unlock);
-        };
-        window.addEventListener("click", unlock);
-      }
-    };
+useEffect(() => {
+  const audio = audioRef.current;
+  if (!audio) return;
 
-    tryPlay();
+  let unlockHandler = null;
 
-    return () => {
-      audioRef.current?.pause();
-    };
-  }, []);
+  const tryPlay = async () => {
+    try {
+      audio.playbackRate = 0.9;
+      await audio.play();
+    } catch {
+      unlockHandler = () => {
+        audio.play().catch(() => {});
+        window.removeEventListener("click", unlockHandler);
+      };
+
+      window.addEventListener("click", unlockHandler);
+    }
+  };
+
+  tryPlay();
+
+  return () => {
+    audio.pause();
+    audio.currentTime = 0;
+
+    if (unlockHandler) {
+      window.removeEventListener("click", unlockHandler);
+    }
+  };
+}, []);
+
+
 
   /* =========================
      FLOWER REVEAL

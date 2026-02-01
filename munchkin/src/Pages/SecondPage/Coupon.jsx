@@ -30,25 +30,37 @@ const Coupon = () => {
 
   /* 🎵 AUDIO AUTO START */
   useEffect(() => {
-    const tryPlay = async () => {
-      try {
-        audioRef.current.playbackRate = 0.95; // tweak vibe speed here
-        await audioRef.current.play();
-      } catch {
-        const unlock = () => {
-          audioRef.current.play();
-          window.removeEventListener("click", unlock);
-        };
-        window.addEventListener("click", unlock);
-      }
-    };
+  const audio = audioRef.current;
+  if (!audio) return;
 
-    tryPlay();
+  let unlockHandler = null;
 
-    return () => {
-      audioRef.current?.pause();
-    };
-  }, []);
+  const tryPlay = async () => {
+    try {
+      audio.playbackRate = 0.95; // vibe calibrated
+      await audio.play();
+    } catch {
+      unlockHandler = () => {
+        audio.play().catch(() => {});
+        window.removeEventListener("pointerdown", unlockHandler);
+      };
+
+      window.addEventListener("pointerdown", unlockHandler);
+    }
+  };
+
+  tryPlay();
+
+  return () => {
+    audio.pause();
+    audio.currentTime = 0;
+
+    if (unlockHandler) {
+      window.removeEventListener("pointerdown", unlockHandler);
+    }
+  };
+}, []);
+
 
   const advance = () => {
     if (current < total - 1) {
