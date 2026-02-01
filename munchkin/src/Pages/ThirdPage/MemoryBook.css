@@ -265,26 +265,40 @@ body {
 }
 
 .photo-dump-btn {
-  margin-top: 28px;
-  padding: 12px 28px;
+  position: relative;
+  margin-top: 48px;
+  padding: 14px 34px;
 
   font-family: "Inter", sans-serif;
-  font-size: 14px;
-  letter-spacing: 0.04em;
+  font-size: 13px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-weight: 500;
 
-  background: transparent;
-  color: #2e2e2e;
+  color: #e6efe9; /* soft contrast text */
 
-  border: 1px solid rgba(46,46,46,0.3);
-  border-radius: 30px;
+  background: rgba(63, 77, 70, 0.88); /* darker sage */
+  backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
 
   cursor: pointer;
-  transition: all 0.35s ease;
+  transition: all 0.45s cubic-bezier(.19,1,.22,1);
 }
 
+/* Hover — smooth elevation */
 .photo-dump-btn:hover {
-  background: rgba(46,46,46,0.06);
-  border-color: rgba(46,46,46,0.6);
-  transform: translateY(-2px);
+
+  background: #2f3b35; /* deeper forest sage */
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 14px 35px rgba(0,0,0,0.25),
+    0 4px 10px rgba(0,0,0,0.12);
+}
+
+.photo-dump-btn:active {
+  transform: translateY(-1px) scale(.98);
 }

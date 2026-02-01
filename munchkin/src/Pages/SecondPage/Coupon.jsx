@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Coupon.css";
 import { useNavigate } from "react-router-dom";
+import song from "./Images/Dandelions.mp3";
 
 const promises = [
   "Tap gently.\nThese are promises — not meant to be rushed.",
@@ -21,9 +22,33 @@ const promises = [
 const Coupon = () => {
   const [current, setCurrent] = useState(0);
   const [showDialog, setShowDialog] = useState(false);
-  const [showLoading, setShowLoading] = useState(false); // 🔑 NEW
+  const [showLoading, setShowLoading] = useState(false);
+
+  const audioRef = useRef(null);
   const navigate = useNavigate();
   const total = promises.length;
+
+  /* 🎵 AUDIO AUTO START */
+  useEffect(() => {
+    const tryPlay = async () => {
+      try {
+        audioRef.current.playbackRate = 0.95; // tweak vibe speed here
+        await audioRef.current.play();
+      } catch {
+        const unlock = () => {
+          audioRef.current.play();
+          window.removeEventListener("click", unlock);
+        };
+        window.addEventListener("click", unlock);
+      }
+    };
+
+    tryPlay();
+
+    return () => {
+      audioRef.current?.pause();
+    };
+  }, []);
 
   const advance = () => {
     if (current < total - 1) {
@@ -31,18 +56,20 @@ const Coupon = () => {
     }
   };
 
-  // 🔑 UPDATED FLOW
   const confirmReturn = () => {
     setShowDialog(false);
     setShowLoading(true);
 
     setTimeout(() => {
-      navigate("/letter");
-    }, 3000); // adjust timing if you want
+      navigate("/scratch");
+    }, 3000);
   };
 
   return (
     <div className="coupon-page">
+
+      {/* 🎵 Background Music */}
+      <audio ref={audioRef} src={song} loop />
 
       {/* Background layers */}
       <div className="promise-motif" />
@@ -53,7 +80,6 @@ const Coupon = () => {
         <span />
       </div>
 
-      {/* Main layout */}
       <div className="coupon-layout">
 
         {/* LEFT */}
@@ -115,7 +141,7 @@ const Coupon = () => {
         </div>
       </div>
 
-      {/* 🌸 PROMISE DIALOG */}
+      {/* DIALOG */}
       {showDialog && (
         <div className="dialog-overlay">
           <div className="dialog-box">
@@ -127,16 +153,16 @@ const Coupon = () => {
               You’ve got only one option — yes.
             </p>
             <center>
-            <button className="restart-btn" onClick={confirmReturn}>
-              <span className="btn-main">Yes</span>
-              <span className="btn-sub">let’s continue</span>
-            </button>
+              <button className="restart-btn" onClick={confirmReturn}>
+                <span className="btn-main">Yes</span>
+                <span className="btn-sub">let’s continue</span>
+              </button>
             </center>
           </div>
         </div>
       )}
 
-      {/* ⏳ LOADING SCREEN */}
+      {/* LOADING */}
       {showLoading && (
         <div className="loading-overlay">
           <div className="loading-box">
@@ -145,7 +171,6 @@ const Coupon = () => {
               <span />
               <span />
             </div>
-
             <p>
               Just a moment… <br />
               Are you ready for the next scratch card?

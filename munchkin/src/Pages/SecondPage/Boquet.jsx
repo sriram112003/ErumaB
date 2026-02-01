@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./BouquetPage.css";
 import bouquetImg from "./Images/Flower.png";
+import song from "./Images/blue.mp3";
 
 const flowerData = {
   rose: {
@@ -48,6 +49,7 @@ export default function BouquetPage() {
 
   const svgRef = useRef(null);
   const dialogRef = useRef(null);
+  const audioRef = useRef(null);
 
   const markerRefs = {
     rose: useRef(),
@@ -58,7 +60,31 @@ export default function BouquetPage() {
   };
 
   /* =========================
-     FLOWER REVEAL (NO LOADER)
+     🎵 AUDIO AUTO START
+  ========================= */
+  useEffect(() => {
+    const tryPlay = async () => {
+      try {
+        audioRef.current.playbackRate = 0.9; // adjust mood speed
+        await audioRef.current.play();
+      } catch {
+        const unlock = () => {
+          audioRef.current.play();
+          window.removeEventListener("click", unlock);
+        };
+        window.addEventListener("click", unlock);
+      }
+    };
+
+    tryPlay();
+
+    return () => {
+      audioRef.current?.pause();
+    };
+  }, []);
+
+  /* =========================
+     FLOWER REVEAL
   ========================= */
   const handleFlowerClick = (key) => {
     setHasStarted(true);
@@ -98,20 +124,20 @@ export default function BouquetPage() {
   };
 
   /* =========================
-     BACK TO LETTER (WITH LOADER)
+     BACK NAV
   ========================= */
   const handleBackToLetter = () => {
     setShowLoading(true);
-
-    setTimeout(() => {
-      navigate("/letter");
-    }, 1500);
+    setTimeout(() => navigate("/scratch"), 1500);
   };
 
   return (
     <div className="bouquet-page">
 
-      {/* LOADING OVERLAY — ONLY FOR BACK BUTTON */}
+      {/* 🎵 Background Music */}
+      <audio ref={audioRef} src={song} loop />
+
+      {/* LOADING OVERLAY */}
       {showLoading && (
         <div className="loading-overlay">
           <div className="loading-box">
@@ -167,7 +193,6 @@ export default function BouquetPage() {
       {/* RIGHT */}
       <div className="bouquet-right">
 
-        {/* HEADER */}
         <div className={`right-header ${hasStarted ? "pinned" : ""}`}>
           <h1 className="intro-title">
             Tadaaaa ✨  
@@ -187,7 +212,6 @@ export default function BouquetPage() {
           )}
         </div>
 
-        {/* DIALOG */}
         {activeFlower && (
           <div ref={dialogRef} className="dialog-box">
             <h2>{flowerData[activeFlower].name}</h2>
@@ -199,11 +223,7 @@ export default function BouquetPage() {
           </div>
         )}
 
-        {/* BACK BUTTON */}
-        <button
-          className="back-button"
-          onClick={handleBackToLetter}
-        >
+        <button className="back-button" onClick={handleBackToLetter}>
           ← Back to the Scratch Cards
         </button>
 

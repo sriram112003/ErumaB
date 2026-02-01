@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Scrapbook.css";
 
@@ -11,6 +11,7 @@ import CuteCover from "./Images/Cover1.jpeg";
 import SelfieCover from "./Images/SelfieCover.png";
 import UsCover from "./Images/Together.png";
 import end from "./Images/End.jpeg";
+import song from "./Images/Photograph.mp3";
 
 /* ============================= */
 /* CAPTIONS PER IMAGE FILE */
@@ -28,7 +29,7 @@ const captions = {
     8: "lazy you",
     9: "lovely days",
     10: "silly faces",
-    11: "good laughs",
+    11: "pookie",
     12: "cute uhh",
     13: "soft smiles",
     14: "simple joy",
@@ -140,9 +141,30 @@ const pages = [
 export default function Scrapbook() {
   const [currentPage, setCurrentPage] = useState(0);
   const navigate = useNavigate();
+  const audioRef = useRef(null);
+
+  /* 🎵 Autoplay with graceful fallback */
+  useEffect(() => {
+    const tryPlay = async () => {
+      try {
+        await audioRef.current.play();
+      } catch {
+        const unlock = () => {
+          audioRef.current.play();
+          window.removeEventListener("click", unlock);
+        };
+        window.addEventListener("click", unlock);
+      }
+    };
+
+    tryPlay();
+  }, []);
 
   return (
     <div className="wrapper">
+
+      {/* Background Music */}
+      <audio ref={audioRef} src={song} loop />
 
       <div className={`book ${currentPage === 0 ? "closed" : "open"}`}>
         {pages.map((page, index) => {
@@ -187,7 +209,7 @@ export default function Scrapbook() {
         </button>
       </div>
 
-      {/* Floating Letter Button — no scroll, no layout shift */}
+      {/* Floating Letter Button */}
 
       {currentPage === pages.length - 1 && (
         <button

@@ -20,7 +20,7 @@ const IbacoPage = () => {
 
   const handleFinalBack = () => {
     setShowDialog(false);
-    navigate("/letter");
+    navigate("/scratch");
   };
 
   return (
@@ -33,9 +33,9 @@ const IbacoPage = () => {
         </h1>
 
         <p className="subtext">
-          I couldn’t hand you Ibaco in person,
-          so I hacked the system and delivered it digitally—
-          zero calories, 100% me being obsessed with you.
+          I couldn’t pass you an Ibaco with my own hands,
+so I rerouted destiny through code and shipped it digitally —
+no calories, no melting… just proof that you live rent-free in my mind.
         </p>
       </div>
 
@@ -63,7 +63,7 @@ const IbacoPage = () => {
                   <br /><br />
                   There is real ice cream that I ordered for you.
                   <br />
-                  It’s already waiting in your fridge.
+                  It’s already waiting for you.
                   <br /><br />
                   Finish this surprise,
                   <br />

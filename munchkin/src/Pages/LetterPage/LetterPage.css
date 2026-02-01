@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+html, body, #root {
+  margin: 0;
+  height: 100%;
+}
+
+/* Page */
+.letter-page {
+  min-height: 100vh;
+  background: url("bg.jpeg") center/cover no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 70px;
+  gap: 48px;
+}
+
+/* Title */
+.letter-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(36px, 4.5vw, 56px);
+  color: #5a3a26;
+}
+
+/* Envelope wrapper = stacking context */
+.envelope-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+/* Envelope */
+.center-image {
+  width: clamp(220px, 30vw, 360px);
+  display: block;
+  border-radius: 18px;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.28);
+  z-index: 1;
+}
+
+/* Heart */
+.heart-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  cursor: pointer;
+  z-index: 3;
+  transition: transform 0.6s ease;
+}
+
+.heart-clicked {
+  transform: translate(-50%, -20%) rotate(-45deg);
+}
+
+/* Prompt paper */
+.paper {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translate(-50%, 40px) scale(0.9);
+  opacity: 0;
+
+  width: 70%;
+  padding: 16px;
+  background: #fffaf0;
+  border-radius: 12px;
+  text-align: center;
+
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+  transition: all 0.7s ease;
+  z-index: 2;
+}
+
+.paper-rise {
+  transform: translate(-50%, -80px) scale(1);
+  opacity: 1;
+}
+
+/* Button */
+.read-btn {
+  background: #e07a5f;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* =========================
+   FULL LETTER OVERLAY
+   ========================= */
+
+.letter-full {
+  position: absolute;
+  left: 50%;
+  bottom: 60px;
+
+  transform: translate(-50%, 60px) scale(0.9);
+  opacity: 0;
+
+  width: 110%;
+  max-width: 520px;
+  padding: 26px;
+
+  background: #fffdf7;
+  border-radius: 16px;
+
+  box-shadow: 0 28px 70px rgba(0,0,0,0.35);
+
+  transition: all 0.7s ease;
+  z-index: 5; /* ABOVE envelope */
+  pointer-events: none;
+}
+
+.letter-show {
+  transform: translate(-50%, -180px) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.letter-full h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  margin-bottom: 12px;
+  color: #5a3a26;
+}
