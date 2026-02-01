@@ -87,7 +87,7 @@ const chapters = [
   },
   {
     title: "Together us",
-    path: "Images/us",
+    path: "Images/Us",
     imageCount: 8,
     coverImage: UsCover
   }
