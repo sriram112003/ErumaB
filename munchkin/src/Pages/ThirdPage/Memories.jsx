@@ -13,6 +13,8 @@ import September from "./Images/Sept.jpg";
 import October from "./Images/October.jpeg";
 import November from "./Images/Nov.jpeg";
 import December from "./Images/Dec.jpeg";
+import January from "./Images/Jan.jpeg";
+import Febraury from "./Images/Feb.jpeg";
 import song from "./Images/memories_C.mp3";
 
 
@@ -134,28 +136,62 @@ November taught me that healing isn’t about holding on harder. Sometimes, it�
   },
   {
     month: "December 2025",
-    teaser: "When it started feeling like home again.",
-    story: `December felt easier. Lighter. Like the weight I had been carrying for months was finally easing off. We weren’t rushing anything—we were slowly getting there, step by step, and that felt right.
+    teaser: "The month that moved faster than my heart could follow.",
+    story: `December carried me in a hundred directions at once. I had just returned home from Mumbai, but life did not slow down. There were responsibilities waiting, unexpected goodbyes, and moments of loss that made the days feel heavier than usual.
 
-I found myself opening up again, just like before. Talking without fear, sharing without overthinking. Being with you—emotionally, even from a distance—started to feel familiar in the best way. Safe. Warm.
+Between all of it came small trips, sudden plans, and another quick journey back to Mumbai. You came to see me there, even if only for a short while. And somehow, that brief meeting brought a quiet comfort I did not know I needed.
 
-December didn’t fix everything. It didn’t need to. It simply reminded me of what home feels like. And for the first time in a long while, I felt like I had found my way back there—with you.`,
+I was trying to open up again, trying to return to the ease we once had. But we stumbled at times. When you forgot about my trip, it hurt softly. Not enough to break us, just enough to remind me that we were still finding our way.
+
+Yet beneath the chaos and the hiccups, I felt something steady.
+
+We were not where we used to be.
+But slowly, gently, we were getting there again.`,
     image: December,
     tone: "winter"
   },
   {
     month: "January 2026",
-    teaser: "Proof that we lasted.",
-    story: "Not perfect. But real.",
-    image: December,
+    teaser: "The month we chose peace over distance.",
+    story: `January felt quieter, not on the outside, but within us. After everything we had been through, it was the month we slowly began making peace with each other, and perhaps with ourselves.
+
+I know you fought for me in ways that were not always visible, but I saw it. I felt it. And it mattered more than I can explain.
+
+I returned to Mumbai, stepping back into the rhythm of my days. You were home for a week too, yet this time, you did not drift away. You stayed in touch. You stayed present. And in that presence, I sensed effort. A gentle determination not to let us slip again.
+
+We were not suddenly perfect. Not magically repaired. But something within us was softening.
+
+January was not about grand gestures.
+It was about trying again.
+
+About meeting each other with a little more patience, a little more understanding.
+
+And somewhere in that quiet effort, we began healing.`,
+    image: January,
     tone: "smoke"
   },
   {
     month: "February 2026",
-    teaser: "Where the beginning learned how to stay.",
+    teaser: "The month that felt like coming home again.",
     story:
-      "A year later, we’re still here. Not because it was easy — but because it was worth choosing.",
-    image: December,
+      `February brought back a familiarity I had been quietly longing for. Being with you started to feel effortless again, like returning to a place my heart already recognized. There was warmth where uncertainty once lingered, and a comfort that gently reminded me of how beautifully we began.
+
+And somewhere in the middle of all this, life decided we should become business partners too. What started as us somehow grew into shared plans, shared goals, and dreams we are now building side by side. Turns out, we work pretty well on spreadsheets and on us.
+
+We are not completely there yet, but I can feel how close we have come. Close enough to recognize us again. Close enough to trust what we are rebuilding.
+
+I cannot promise you that I am one hundred percent the same as I once was. Some parts of me are still on their way back, still learning to rest without fear.
+
+But this, I promise you with quiet certainty.
+I will get there.
+
+Step by step.
+With you.
+
+And that is why February does not feel like an ending.
+
+It feels like home again.`,
+    image: Febraury,
     tone: "golden",
     final: true
   }

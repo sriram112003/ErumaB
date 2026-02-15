@@ -3,50 +3,62 @@ import "./Closure.css";
 
 export default function ClosurePage() {
 
+  const [showPrelude, setShowPrelude] = useState(false);
   const [showLine1, setShowLine1] = useState(false);
   const [showLine2, setShowLine2] = useState(false);
   const [showFinal, setShowFinal] = useState(false);
   const [showMicro, setShowMicro] = useState(false);
-  const [afterglow, setAfterglow] = useState(false);
+  const [showEnd, setShowEnd] = useState(false);
+  const [blackout, setBlackout] = useState(false);
+  const [chapter, setChapter] = useState(false);
 
   useEffect(() => {
+
     document.body.style.overflow = "hidden";
 
-    const t1 = setTimeout(() => setShowLine1(true), 800);
-    const t2 = setTimeout(() => setShowLine2(true), 2600);
-    const t3 = setTimeout(() => setShowFinal(true), 4800);
-    const t4 = setTimeout(() => setShowMicro(true), 7000);
-    const t5 = setTimeout(() => setAfterglow(true), 18000);
-    clearTimeout(t5);
-
+    const t0 = setTimeout(() => setShowPrelude(true), 400);
+    const t1 = setTimeout(() => setShowLine1(true), 2000);
+    const t2 = setTimeout(() => setShowLine2(true), 4200);
+    const t3 = setTimeout(() => setShowFinal(true), 6800);
+    const t4 = setTimeout(() => setShowMicro(true), 9200);
+    const t5 = setTimeout(() => setShowEnd(true), 12500);
+    const t6 = setTimeout(() => setBlackout(true), 17000);
+    const t7 = setTimeout(() => setChapter(true), 19500);
 
     return () => {
       document.body.style.overflow = "auto";
+
+      clearTimeout(t0);
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
       clearTimeout(t4);
+      clearTimeout(t5);
+      clearTimeout(t6);
+      clearTimeout(t7);
     };
+
   }, []);
 
   return (
-  <div className={`closure-page ${afterglow ? "afterglow" : ""}`}>
+    <div className="closure-page">
 
-      {/* 🌑 atmospheric background */}
+      {/* Atmosphere */}
       <div className="closure-atmosphere" />
       <div className="closure-noise" />
-    <div className="world-dim"></div>
-    <div className="final-dim"></div>
 
+      {/* TEXT */}
+      <div className="closure-content">
 
-      {/* ✨ text */}
-    <div className={`closure-content ${afterglow ? "afterglow" : ""}`}>
+        <p className={`closure-prelude ${showPrelude ? "show" : ""}`}>
+          A year passed.<br/>
+          And somehow… we are still here.
+        </p>
 
         <p className={`closure-line ${showLine1 ? "show" : ""}`}>
-          In a world full of temporary things…
-          <br/>
+          In a life where so much kept changing…<br/>
           <span className="highlight">
-            you became my constant.
+            you stayed.
           </span>
         </p>
 
@@ -59,14 +71,29 @@ export default function ClosurePage() {
         </p>
 
         <p className={`closure-final ${showFinal ? "show" : ""}`}>
-          I’m really glad it was you.
+          Of all the paths life could have taken…<br/>
+          I’m grateful it led me to you.
         </p>
 
         <p className={`closure-micro ${showMicro ? "show" : ""}`}>
-          Life got better when you walked into it.
+          You arrived quietly… and changed everything.
+        </p>
+
+        <p className={`closure-end ${showEnd ? "show" : ""}`}>
+          This is where our little story rests…<br/>
+          but not where it ends.
         </p>
 
       </div>
+
+      {/* FULL BLACKOUT */}
+      <div className={`true-black ${blackout ? "visible" : ""}`} />
+
+      {/* FINAL CARD */}
+      <div className={`chapter-one ${chapter ? "visible" : ""}`}>
+        End of Chapter One.
+      </div>
+
     </div>
   );
 }

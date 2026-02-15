@@ -268,3 +268,64 @@ animation: colorFloat 38s ease-in-out infinite alternate;
 .closure-page.afterglow{
   cursor:none;
 }
+.closure-prelude,
+.closure-line,
+.closure-final,
+.closure-micro,
+.closure-end{
+  opacity:0;
+  transform:translateY(30px);
+  filter:blur(8px);
+}
+
+.show{
+  opacity:1;
+  transform:translateY(0);
+  filter:blur(0);
+  transition:all 1.8s cubic-bezier(.19,1,.22,1);
+}
+.closure-prelude{
+  font-family:'Playfair Display', serif;
+  font-size:18px;
+  color:rgba(255,255,255,.5);
+  margin-bottom:60px;
+}
+.closure-end{
+  margin-top:110px;
+  font-size:16px;
+  letter-spacing:.8px;
+  color:rgba(255,255,255,.55);
+}
+.true-black{
+  position:absolute;
+  inset:0;
+  background:#000;
+  opacity:0;
+  pointer-events:none;
+  z-index:20;
+  transition:opacity 4s ease;
+}
+
+.true-black.visible{
+  opacity:1;
+}
+.chapter-one{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-family:'Playfair Display', serif;
+  font-size:28px;
+  letter-spacing:1.2px;
+  color:#fff;
+
+  opacity:0;
+  z-index:30;
+  transition:opacity 3s ease;
+}
+
+.chapter-one.visible{
+  opacity:1;
+}
