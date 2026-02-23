@@ -7,13 +7,13 @@ const promises = [
   "Tap gently.\nThese are promises — not meant to be rushed.",
 
   "I promise you endless hugs — given truly, whenever you need them.",
-  "I promise to be a safe place for your rants, your storms, and your unfiltered truths — without judgement.",
+  "I promise to be a safe place for your rants, your storms, and your unfiltered truths - without judgement.",
   "I promise laughter that finds us unexpectedly, even on ordinary days.",
-  "I promise to show up — even on the days I don’t have all the answers.",
+  "I promise to show up - even on the days I don’t have all the answers.",
   "I promise to hold your hand through the messy parts, not just the beautiful ones.",
   "I promise effort, honesty, and growth — not perfection.",
-  "I promise that one day, we’ll sit somewhere quiet, doing nothing — and it will be enough.",
-  "I promise that whenever you feel low, I’ll bring bad jokes, good company, and myself — always.",
+  "I promise that one day, we’ll sit somewhere quiet, doing nothing - and it will be enough.",
+  "I promise that whenever you feel low, I’ll bring bad jokes, good company, and myself - always.",
   "I promise to be a place you can rest, not a place you have to perform.",
 
   "That’s all of them.\nBut I’ll keep choosing you — every day."
