@@ -6,7 +6,7 @@ import song from "./Images/Dandelions.mp3";
 const promises = [
   "Tap gently.\nThese are promises — not meant to be rushed.",
 
-  "I promise you endless hugs — given truly, whenever you need them.",
+  "I promise you endless hugs - given truly, whenever you need them.",
   "I promise to be a safe place for your rants, your storms, and your unfiltered truths - without judgement.",
   "I promise laughter that finds us unexpectedly, even on ordinary days.",
   "I promise to show up - even on the days I don’t have all the answers.",
