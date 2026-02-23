@@ -49,14 +49,14 @@ const captions = {
     9: "vibe check",
     10: "self love",
     11: "casual slay",
-    12: "low effort high impact",
+    12: "Sassy you",
     13: "daily mood",
     14: "soft focus",
     15: "reflection",
     16: "just you"
   },
 
-  us: {
+  Us: {
     1: "us, just being us",
     2: "always",
     3: "memories catching up",
