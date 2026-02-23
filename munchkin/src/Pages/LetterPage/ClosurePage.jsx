@@ -11,6 +11,7 @@ export default function ClosurePage() {
   const [showEnd, setShowEnd] = useState(false);
   const [blackout, setBlackout] = useState(false);
   const [chapter, setChapter] = useState(false);
+  const [chapterTwo, setChapterTwo] = useState(false);
 
   useEffect(() => {
 
@@ -24,6 +25,7 @@ export default function ClosurePage() {
     const t5 = setTimeout(() => setShowEnd(true), 12500);
     const t6 = setTimeout(() => setBlackout(true), 17000);
     const t7 = setTimeout(() => setChapter(true), 19500);
+    const t8 = setTimeout(() => setChapterTwo(true), 21500);
 
     return () => {
       document.body.style.overflow = "auto";
@@ -36,6 +38,7 @@ export default function ClosurePage() {
       clearTimeout(t5);
       clearTimeout(t6);
       clearTimeout(t7);
+      clearTimeout(t8);
     };
 
   }, []);
@@ -91,7 +94,24 @@ export default function ClosurePage() {
 
       {/* FINAL CARD */}
       <div className={`chapter-one ${chapter ? "visible" : ""}`}>
-        End of Chapter One.
+        <div style={{ textAlign: "center" }}>
+          <div style={{ textDecoration: "line-through", opacity: 0.6 }}>
+            End of Chapter One.
+          </div>
+
+          <div
+            style={{
+              marginTop: "18px",
+              fontSize: "22px",
+              letterSpacing: "1.4px",
+              opacity: chapterTwo ? 1 : 0,
+              transform: chapterTwo ? "translateY(0)" : "translateY(12px)",
+              transition: "all 2.2s cubic-bezier(.22,1,.36,1)"
+            }}
+          >
+            Chapter Two…
+          </div>
+        </div>
       </div>
 
     </div>
