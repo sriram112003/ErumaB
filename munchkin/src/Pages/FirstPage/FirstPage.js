@@ -126,7 +126,7 @@ const navigate = useNavigate();
               and feelings we never learned how to name.
               Are you ready to step into them?
             </p>
-            <p className="signature">— Yours, Eruma 💗</p>
+            <p className="signature_a">— Yours, Eruma 💗</p>
             <button
   onClick={() => {
     setOpenLetter(false);
